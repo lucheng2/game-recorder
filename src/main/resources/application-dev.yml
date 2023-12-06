@@ -1,0 +1,8 @@
+env:
+  db:
+    driver: com.mysql.cj.jdbc.Driver #Oracle数据库为oracle.jdbc.OracleDriver
+    ip: 110.40.130.64
+    port: 33306
+    username: chenglu
+    name: game_recorder
+    password: chengdu_bulletin@pass  #mysqls
