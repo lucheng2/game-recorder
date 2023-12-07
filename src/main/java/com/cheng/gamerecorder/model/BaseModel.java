@@ -1,12 +1,15 @@
 package com.cheng.gamerecorder.model;
 
-import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
@@ -17,12 +20,16 @@ import java.time.LocalDateTime;
  */
 @Data
 @MappedSuperclass
+@NoArgsConstructor
+@AllArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 public abstract class BaseModel {
 
     /**
      * 主键ID
      */
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
     /**
      * 创建时间
@@ -44,5 +51,10 @@ public abstract class BaseModel {
      */
     @LastModifiedBy
     private String updateBy;
+
+    /**
+     * 是否已经删除
+     */
+    private Boolean deleted = Boolean.FALSE;
 
 }

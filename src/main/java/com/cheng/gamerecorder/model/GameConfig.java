@@ -1,9 +1,8 @@
 package com.cheng.gamerecorder.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import jakarta.persistence.*;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,12 +17,16 @@ import java.util.List;
 @Table(name = "game_config")
 @Data
 @EqualsAndHashCode(callSuper = true)
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class GameConfig extends BaseModel{
 
 
     /**
      * 游戏类型
      */
+    @ManyToOne
     private GameType gameType;
 
     /**
@@ -34,5 +37,11 @@ public class GameConfig extends BaseModel{
     /**
      * 游戏玩家
      */
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(
+            name = "player_game_config_relation",
+            joinColumns = @JoinColumn(name = "game_config_id", nullable = false, referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "player_id", nullable = false, referencedColumnName = "ID")
+    )
     private List<Player> players = new ArrayList<>();
 }

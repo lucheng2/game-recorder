@@ -2,8 +2,7 @@ package com.cheng.gamerecorder.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 /**
  * 游戏玩家
@@ -15,6 +14,9 @@ import lombok.EqualsAndHashCode;
 @Table(name = "player")
 @Data
 @EqualsAndHashCode(callSuper = true)
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Player extends BaseModel{
 
     /**

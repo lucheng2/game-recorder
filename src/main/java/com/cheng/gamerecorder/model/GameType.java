@@ -2,8 +2,8 @@ package com.cheng.gamerecorder.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 /**
  * 游戏类型
@@ -15,6 +15,9 @@ import lombok.EqualsAndHashCode;
 @Table(name = "game_type")
 @Data
 @EqualsAndHashCode(callSuper = true)
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class GameType extends BaseModel{
 
 

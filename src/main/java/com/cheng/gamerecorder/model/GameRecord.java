@@ -1,6 +1,7 @@
 package com.cheng.gamerecorder.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -20,16 +21,18 @@ public class GameRecord extends BaseModel{
     /**
      * 局数id
      */
-    private Long setId;
+    private Long gameSetId;
 
     /**
      * 游戏
      */
+    @ManyToOne
     private GameConfig gameConfig;
 
     /**
      * 玩家
      */
+    @ManyToOne
     private Player player;
 
     /**
