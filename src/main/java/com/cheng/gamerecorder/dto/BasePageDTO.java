@@ -1,9 +1,6 @@
 package com.cheng.gamerecorder.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
@@ -18,7 +15,7 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@SuperBuilder
+@Builder
 public class BasePageDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -26,10 +23,12 @@ public class BasePageDTO implements Serializable {
     /**
      * 页码，默认1
      */
+    @Builder.Default
     private Integer pageNum = 1;
     /**
      * 页码大小，默认50
      */
+    @Builder.Default
     private Integer pageSize = 50;
 
 }

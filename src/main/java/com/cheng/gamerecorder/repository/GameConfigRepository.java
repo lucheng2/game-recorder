@@ -1,6 +1,7 @@
 package com.cheng.gamerecorder.repository;
 
 import com.cheng.gamerecorder.model.GameConfig;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 /**

@@ -2,7 +2,6 @@ package com.cheng.gamerecorder.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,5 +42,6 @@ public class GameConfig extends BaseModel{
             joinColumns = @JoinColumn(name = "game_config_id", nullable = false, referencedColumnName = "ID"),
             inverseJoinColumns = @JoinColumn(name = "player_id", nullable = false, referencedColumnName = "ID")
     )
+    @Builder.Default
     private List<Player> players = new ArrayList<>();
 }

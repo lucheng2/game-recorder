@@ -1,8 +1,11 @@
 package com.cheng.gamerecorder.service;
 
-import com.cheng.gamerecorder.dto.BasePageDTO;
 import com.cheng.gamerecorder.dto.GameConfigDTO;
+import com.cheng.gamerecorder.dto.GameRecordDTO;
 import com.cheng.gamerecorder.model.GameConfig;
+import com.cheng.gamerecorder.model.GameRecord;
+import com.cheng.gamerecorder.vo.GameRecordSummaryVO;
+import com.cheng.gamerecorder.vo.GameRecordVO;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.data.domain.Page;
 
@@ -20,7 +23,13 @@ public interface GameService {
 
     List<GameConfig> findAllGameConfig();
 
-    Page<GameConfig> queryGameConfig(Integer pageNum, Integer pageSize);
+    Page<GameConfig> queryGameConfig(@NotNull Integer pageNum, @NotNull Integer pageSize);
 
-    void softDeleteGameConfig(Long id);
+    void softDeleteGameConfig(@NotNull Long id);
+
+    void saveGameRecord(@NotNull GameRecordDTO gameRecordDTO);
+
+    List<List<GameRecordVO>> queryGameConfigByGameConfigId(@NotNull Long gameConfigId);
+
+    List<GameRecordSummaryVO> queryGameRecordSummary(@NotNull Long gameConfigId);
 }

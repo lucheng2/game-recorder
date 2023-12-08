@@ -3,8 +3,7 @@ package com.cheng.gamerecorder.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 /**
  * 游戏记录
@@ -16,7 +15,10 @@ import lombok.EqualsAndHashCode;
 @Table(name = "game_record")
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class GameRecord extends BaseModel{
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class GameRecord extends BaseModel implements Comparable<GameRecord>{
 
     /**
      * 局数id
@@ -44,4 +46,9 @@ public class GameRecord extends BaseModel{
      * 本局本玩家的游戏总得分
      */
     private Integer totalScore;
+
+    @Override
+    public int compareTo(GameRecord o) {
+        return - this.gameSetId.compareTo(o.gameSetId);
+    }
 }

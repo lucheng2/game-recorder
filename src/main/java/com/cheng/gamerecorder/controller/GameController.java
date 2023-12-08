@@ -1,8 +1,12 @@
 package com.cheng.gamerecorder.controller;
 
 import com.cheng.gamerecorder.dto.GameConfigDTO;
+import com.cheng.gamerecorder.dto.GameRecordDTO;
 import com.cheng.gamerecorder.model.GameConfig;
+import com.cheng.gamerecorder.model.GameRecord;
 import com.cheng.gamerecorder.service.GameService;
+import com.cheng.gamerecorder.vo.GameRecordSummaryVO;
+import com.cheng.gamerecorder.vo.GameRecordVO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -49,5 +53,23 @@ public class GameController {
     public List<GameConfig> queryGameConfig(@Parameter(description = "页码", required = true) @RequestParam(defaultValue = "1") Integer pageNum,
                                             @Parameter(description = "页大小", required = true) @RequestParam(defaultValue = "50") Integer pageSize) {
         return gameService.queryGameConfig(pageNum, pageSize).getContent();
+    }
+
+    @Operation(summary = "查询游戏记录")
+    @GetMapping("/queryGameRecord")
+    public List<List<GameRecordVO>> queryGameRecord(@Parameter(description = "游戏配置id", required = true) @RequestParam Long gameConfigId) {
+        return gameService.queryGameConfigByGameConfigId(gameConfigId);
+    }
+
+    @Operation(summary = "保存游戏记录")
+    @PostMapping("/saveGameRecord")
+    public void saveGameRecord(@RequestBody GameRecordDTO gameRecordDTO) {
+        gameService.saveGameRecord(gameRecordDTO);
+    }
+
+    @Operation(summary = "查询游戏记录汇总")
+    @GetMapping("/queryGameRecordSummary")
+    public List<GameRecordSummaryVO> queryGameRecordSummary(@Parameter(description = "游戏配置id", required = true) @RequestParam Long gameConfigId) {
+        return gameService.queryGameRecordSummary(gameConfigId);
     }
 }
